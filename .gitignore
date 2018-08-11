@@ -3,3 +3,11 @@
 ################################################################################
 
 /TestResults/6333ce81-2b3a-4984-a068-2fad87684013
+/ExtensionsCoreUtils.Test/bin/Debug/netcoreapp2.1
+/ExtensionsCoreUtils.Test/bin/Release/netcoreapp2.1
+/ExtensionsCoreUtils/bin/Debug/netcoreapp2.1
+/ExtensionsCoreUtils/bin/Release/netcoreapp2.1
+/ExtensionsCoreUtils/obj
+/ExtensionsCoreUtils.Test/obj
+/.vs/ExtensionsCoreUtils
+/TestResults
