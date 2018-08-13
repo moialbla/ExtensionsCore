@@ -19,18 +19,22 @@ namespace ExtensionsCoreUtils.Tests
         public void Test_Dependency_Injection_Start()
         {
             IServiceCollection service = new ServiceCollection().ScanInjections("ExtensionsCoreUtils.Tests", "ExtensionsCoreUtils.Tests.other");
-            Assert.Equal(3, service.Count);
+            Assert.Equal(4, service.Count);
             service = new ServiceCollection().ScanInjections();
             Assert.Equal(0, service.Count);
             service = new ServiceCollection().ScanInjections("ExtensionsCoreUtils.Tests.other");
             Assert.Equal(0, service.Count);
             service = new ServiceCollection().ScanInjections("ExtensionsCoreUtils.Tests");
-            Assert.Equal(3, service.Count);
-            var serviceProvider = service.BuildServiceProvider();
+            Assert.Equal(4, service.Count);
+            ServiceProvider serviceProvider = service.BuildServiceProvider();
             var type = serviceProvider.GetService(typeof(ITest1));
             Assert.True(type is Class1);
             IEnumerable<object> typesList = serviceProvider.GetServices(typeof(ITest2));
-            Assert.True(typesList.Count() == 2);
+            Assert.True(typesList.Count() == 3);
+            var class4 = serviceProvider.GetService(typeof(ITest2), "Test");
+            Assert.True(class4 is Class4);
+            var class3 = serviceProvider.GetService(typeof(ITest2), "Testa");
+            Assert.True(class3 is null);
         }
 
 
@@ -52,7 +56,7 @@ namespace ExtensionsCoreUtils.Tests
         [Fact]
         public void Authenticate_With_Invalid_Credentials_Throws_AuthenticationException()
         {
-            Exception ex = Assert.Throws<ArgumentNullException>(() => Scan.ScanInjections(null));
+            Exception ex = Assert.Throws<ArgumentNullException>(() => IServiceCollectionExtension.ScanInjections(null));
             Assert.Equal(Expected1, ex.Message);
         }
 

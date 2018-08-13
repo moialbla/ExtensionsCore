@@ -14,13 +14,42 @@ namespace ExtensionsCoreUtils.Attributes
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public sealed class InjectableAttribute : Attribute
     {
-        public InjectableAttribute(Type instanceOf, DependencyInjectionTypes injectionType)
-        {   if (instanceOf is null) {
+
+        /// <summary>
+        /// Basic constructor.
+        /// </summary>
+        /// <param name="instanceOf">Interface</param>
+        /// <param name="injectionType">Injection type. By default singlenton</param>
+        public InjectableAttribute(Type instanceOf, DependencyInjectionTypes injectionType = DependencyInjectionTypes.Singlenton)
+        {
+            if (instanceOf is null)
+            {
                 throw new ArgumentNullException(nameof(instanceOf));
             }
             InstaceOf = instanceOf;
             DependencyType = injectionType;
+            //Internal GUID
+            Name = Guid.NewGuid().ToString();
         }
+
+        /// <summary>
+        /// Advance constructor.
+        /// </summary>
+        /// <param name="instanceOf">Interface</param>
+        /// <param name="injectionType">Injection type. By default singlenton.</param>
+        /// <param name="name">The reference name.</param>
+        public InjectableAttribute(Type instanceOf, DependencyInjectionTypes injectionType, String name)
+            :this(instanceOf, injectionType)
+        {
+            this.Name = name;
+        }
+
+
+        /// <summary>
+        /// Reference name
+        /// </summary>
+        public String Name { get; set; }
+
         /// <summary>
         /// Type of instance.
         /// </summary>

@@ -1,5 +1,6 @@
 ﻿using ExtensionsCoreUtils.Attributes;
 using ExtensionsCoreUtils.Enums;
+using ExtensionsCoreUtils.Factories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace Microsoft.Extensions.DependencyInjection
     /// <summary>
     /// Static class for extension the Microsoft.Extensions.DependencyInjection namespace.
     /// </summary>
-    public static class Scan
+    public static class IServiceCollectionExtension
     {
         /// <summary>
         /// Extension from Microsoft.Extensions.DependencyInjection. 
@@ -20,19 +21,27 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <code>
         ///   public interface ITest1 {}
         ///   
+        ///   [InjectableAttribute(typeof(ITest1))]
+        ///   public class Class1 : ITest1{ }
+        ///   
         ///   [InjectableAttribute(typeof(ITest1), DependencyInjectionTypes.Scoped)]
+        ///   public class Class1 : ITest1{ }
+        ///   
+        ///   [InjectableAttribute(typeof(ITest1), DependencyInjectionTypes.Scoped, "myClass1")]
         ///   public class Class1 : ITest1{ }
         ///   </code>
         /// </example>
         /// <param name="services"></param>
         /// <param name="assemblies">Assemblies list by comma, or GetEntryAssembly by default</param>
         /// <returns>ISericeCollection to continue the configuration.</returns>
-        public static IServiceCollection ScanInjections(this IServiceCollection services,  params string[] assemblies)
+        public static IServiceCollection ScanInjections(this IServiceCollection services, params string[] assemblies)
         {
             if (services == null)
             {
                 throw new ArgumentNullException(nameof(services));
             }
+
+            InjectionFactory.Clear();
 
             IEnumerable<Type> types = GetListOfTypes(assemblies);
 
@@ -43,13 +52,15 @@ namespace Microsoft.Extensions.DependencyInjection
                     foreach (var zinterface in zclass.GetTypeInfo().ImplementedInterfaces)
                     {
                         AddInjection(services, injectable.DependencyType, zinterface, zclass);
+                        AddInternalInjection(injectable.Name, zclass);
                     }
                 }
             }
             return services;
         }
 
-        private static IEnumerable<Type> GetListOfTypes(string[] assemblies) {
+        private static IEnumerable<Type> GetListOfTypes(string[] assemblies)
+        {
 
             Type[] types;
 
@@ -60,7 +71,8 @@ namespace Microsoft.Extensions.DependencyInjection
                     .Where(assembly => assemblies.Contains(assembly.GetName().Name))
                     .SelectMany(assembly => assembly.GetTypes()).ToArray();
             }
-            else {
+            else
+            {
                 types = Assembly.GetEntryAssembly().GetTypes();
             }
             return from zclass in types
@@ -73,7 +85,7 @@ namespace Microsoft.Extensions.DependencyInjection
             Type zinterface,
             Type zclass)
         {
-            
+
             if (type == DependencyInjectionTypes.Singlenton)
             {
                 services.AddSingleton(zinterface, zclass);
@@ -86,6 +98,11 @@ namespace Microsoft.Extensions.DependencyInjection
             {
                 services.AddTransient(zinterface, zclass);
             }
+        }
+
+        private static void AddInternalInjection(string key, Type zclass)
+        {
+            InjectionFactory.Add(key, zclass);
         }
     }
 }

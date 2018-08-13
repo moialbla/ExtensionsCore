@@ -34,6 +34,14 @@ namespace Myspace.Services
     }
 }
 
+namespace Myspace.Services
+{
+  
+    [InjectableAttribute(typeof(ITest2), DependencyInjectionTypes.Scoped, "Test")]
+    class Class4 : ITest2
+    {
+    }
+}
 
 namespace MyApp
 {
@@ -43,14 +51,32 @@ namespace MyApp
 
         public IConfigurationRoot Configuration { get; }
 
+        public ServiceProvider MyServiceProvider { get; }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            ...
+            ......
             //Add this line in your configuration services.
             services.ScanInjections("Myspace");
-            ...
+            ......
+            MyServiceProvider = services.BuildServiceProvider();
         }
-  ........
+  ......
 }
+
+namespace MyApp
+{
+
+    public class <>
+    {
+        public void method()
+        {
+            ......
+            ITest2 itest = MyServiceProvider.GetService(typeof(ITest2), "Test");
+            ......
+        }
+    }
+}
+
 ```
