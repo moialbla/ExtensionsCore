@@ -1,5 +1,7 @@
 language: csharp
 solution: ExtensionsCoreUtils.sln
+mono: none
+dotnet: 2.1.1
 install:
   - nuget restore ExtensionsCoreUtils.sln
   - nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner
