@@ -1,9 +1,33 @@
 # ExtensionsCore
 [![License](https://img.shields.io/badge/License-MIT-lightgrey.svg?style=flat)](http://adultlink.mit-license.org)
 
-.Net Core extensions  to add more features for net core framework.
+.Net Core extensions add more features to net core framework.
 
-Please for more details check the projects.
+## Motivation
+
+Even being Net core is a great framework, it´s very complicate and tedious 
+make configurations as others frameworks as Spring Java. 
+Therefore, with reference to knowledge of other technologies, 
+i decide to build a simple and util core for developers. 
+
+
+## Features
+
+1. [Dependency injection](https://github.com/moialbla/ExtensionsCore/blob/master/ExtensionsCoreUtils/README.md)
+
+## Currently implemented
+- [x] Dependency injection (phase 1).
+
+## Not implemented (but planned)
+- [ ] Dependency injection (phase 2) -> Own IOC.
+- [ ] Auto Logger  
+- [ ] Auto i18n
+- [ ] Generic CRUD
+
+## Any questions, comments or additions?
+* Any sugestion or pull request it´s welcome.	 
+* If you have a feature request or bug report
+leave an issue on the issues page or send a pull request. 
 
 # License
 MIT License

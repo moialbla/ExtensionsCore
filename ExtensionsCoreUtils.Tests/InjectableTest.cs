@@ -1,6 +1,6 @@
 using ExtensionsCoreUtils.Attributes;
-using ExtensionsCoreUtils.Test.Classes;
-using ExtensionsCoreUtils.Test.Interfaces;
+using ExtensionsCoreUtils.Tests.Classes;
+using ExtensionsCoreUtils.Tests.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using System;
@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using Xunit;
 using ExtensionsCoreUtils.Enums;
 
-namespace ExtensionsCoreUtils.Test
+namespace ExtensionsCoreUtils.Tests
 {
     public class InjectableTestx
     {
@@ -18,13 +18,13 @@ namespace ExtensionsCoreUtils.Test
         [Fact]
         public void Test_Dependency_Injection_Start()
         {
-            IServiceCollection service = new ServiceCollection().ScanInjections("ExtensionsCoreUtils.Test");
+            IServiceCollection service = new ServiceCollection().ScanInjections("ExtensionsCoreUtils.Tests", "ExtensionsCoreUtils.Tests.other");
             Assert.Equal(3, service.Count);
             service = new ServiceCollection().ScanInjections();
             Assert.Equal(0, service.Count);
-            service = new ServiceCollection().ScanInjections("ExtensionsCoreUtils.Test.other");
+            service = new ServiceCollection().ScanInjections("ExtensionsCoreUtils.Tests.other");
             Assert.Equal(0, service.Count);
-            service = new ServiceCollection().ScanInjections("ExtensionsCoreUtils.Test", "ExtensionsCoreUtils.Test.other");
+            service = new ServiceCollection().ScanInjections("ExtensionsCoreUtils.Tests");
             Assert.Equal(3, service.Count);
             var serviceProvider = service.BuildServiceProvider();
             var type = serviceProvider.GetService(typeof(ITest1));

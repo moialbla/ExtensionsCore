@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ExtensionsCoreUtils.Test.Interfaces
+namespace ExtensionsCoreUtils.Tests.Interfaces
 {
-    interface ITest1
+    interface ITest2
     {
     }
 }

@@ -11,3 +11,5 @@
 /ExtensionsCoreUtils.Test/obj
 /.vs/ExtensionsCoreUtils
 /TestResults
+/ExtensionsCoreUtils.Tests/bin
+/ExtensionsCoreUtils.Tests/obj
