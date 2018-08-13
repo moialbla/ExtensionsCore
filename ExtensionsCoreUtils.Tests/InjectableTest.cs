@@ -12,8 +12,6 @@ namespace ExtensionsCoreUtils.Tests
 {
     public class InjectableTestx
     {
-        private const string Expected = "Value cannot be null.\r\nParameter name: instanceOf";
-        private const string Expected1 = "Value cannot be null.\r\nParameter name: services";   
 
         [Fact]
         public void Test_Dependency_Injection_Start()
@@ -41,8 +39,9 @@ namespace ExtensionsCoreUtils.Tests
         [Fact]
         public void Attribute_Throws_ArgumentNullException()
         {
+            String str = String.Format("Value cannot be null.{0}Parameter name: instanceOf", Environment.NewLine);
             Exception ex = Assert.Throws<ArgumentNullException>(() => new InjectableAttribute(null, Enums.DependencyInjectionTypes.Scoped));
-            Assert.Equal(Expected, ex.Message);
+            Assert.Equal(str, ex.Message);
         }
 
         [Fact]
@@ -56,8 +55,9 @@ namespace ExtensionsCoreUtils.Tests
         [Fact]
         public void Authenticate_With_Invalid_Credentials_Throws_AuthenticationException()
         {
+            String str = String.Format("Value cannot be null.{0}Parameter name: services", Environment.NewLine);
             Exception ex = Assert.Throws<ArgumentNullException>(() => IServiceCollectionExtension.ScanInjections(null));
-            Assert.Equal(Expected1, ex.Message);
+            Assert.Equal(str, ex.Message);
         }
 
         [Fact]
