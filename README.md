@@ -10,6 +10,14 @@ make configurations as others frameworks as Spring Java.
 Therefore, with reference to knowledge of other technologies, 
 i decide to build a simple and util core for developers. 
 
+## Installation
+
+[![NuGet Status](https://img.shields.io/nuget/v/Microsoft.ML.svg?style=flat)](https://www.nuget.org/packages/Microsoft.ML/)
+
+From the NuGet package manager:
+```
+Install-Package ExtensionsCoreUtils -Version 1.0.0
+```
 
 ## Contents
 

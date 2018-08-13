@@ -13,3 +13,5 @@
 /TestResults
 /ExtensionsCoreUtils.Tests/bin
 /ExtensionsCoreUtils.Tests/obj
+/ExtensionsCoreUtils/bin/NuGet
+/ExtensionsCoreUtils.sln

@@ -4,6 +4,15 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <Platforms>AnyCPU;x64</Platforms>
 	<DebugType>Full</DebugType>
+	<Product>ExtensionsCoreUtils</Product>
+	<Description>Net core extension</Description>
+	<PackageId>ExtensionsCoreUtils</PackageId>
+	<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+	<PackageReleaseNotes>Net core extension</PackageReleaseNotes>
+	<Version>1.0.0</Version>
+	<PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
+	<Company>ExtensionsCoreUtils</Company>
+	<Authors>ExtensionsCoreUtils</Authors>
   </PropertyGroup>
 
   <ItemGroup>
