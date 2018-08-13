@@ -1,6 +1,6 @@
 # ExtensionsCore
 [![License](https://img.shields.io/badge/License-MIT-lightgrey.svg?style=flat)](http://adultlink.mit-license.org)
-
+[![Build Status](https://travis-ci.org/moialbla/ExtensionsCore.svg?branch=master)](https://travis-ci.org/moialbla/ExtensionsCore)
 .Net Core extensions add more features to net core framework.
 
 ## Motivation
@@ -11,7 +11,7 @@ Therefore, with reference to knowledge of other technologies,
 i decide to build a simple and util core for developers. 
 
 
-## Features
+## Contents
 
 1. [Dependency injection](https://github.com/moialbla/ExtensionsCore/blob/master/ExtensionsCoreUtils/README.md)
 
