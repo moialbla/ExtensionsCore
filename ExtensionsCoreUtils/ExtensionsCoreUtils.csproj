@@ -17,12 +17,12 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="VroomJs" Version="1.2.3" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Images\" />
-    <Folder Include="Injectable\" />
   </ItemGroup>
 
 </Project>

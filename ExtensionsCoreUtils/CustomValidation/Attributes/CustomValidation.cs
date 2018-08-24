@@ -12,8 +12,9 @@ namespace ExtensionsCoreUtils.Attributes
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = true)]
     public sealed class CustomValidationAttribute : ValidationAttribute
     {
- 
 
+        static JsEngine js = new JsEngine(4, 32);
+            
         public CustomValidationAttribute()
         {
         }
@@ -42,11 +43,8 @@ namespace ExtensionsCoreUtils.Attributes
             }
             bool valid = false;
 
-            using (JsEngine js = new JsEngine(4, 32))
-            {
                 using (JsContext context = js.CreateContext())
                 {
-
                     // Create a global variable on the JS side.
                     context.Execute(@"var fn = { exec: function (value) { return value != null; } }");
                     // Get it and use "dynamic" to tell the compiler to use runtime binding.
@@ -56,7 +54,7 @@ namespace ExtensionsCoreUtils.Attributes
                     Console.WriteLine(x.exec(value));
                     valid = (bool)x.exec(value);
                 }
-            }
+
             return valid;
         }
     }

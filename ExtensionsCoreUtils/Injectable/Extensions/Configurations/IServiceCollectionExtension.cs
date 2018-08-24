@@ -1,6 +1,7 @@
 ﻿using ExtensionsCoreUtils.Attributes;
 using ExtensionsCoreUtils.Enums;
 using ExtensionsCoreUtils.Factories;
+using ExtensionsCoreUtils.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,9 +44,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
             InjectionFactory.Clear();
 
-            IEnumerable<Type> types = GetListOfTypes(assemblies);
-
-            foreach (Type zclass in types)
+            foreach (Type zclass in CoreUtils.GetListOfTypes(assemblies))
             {
                 foreach (var injectable in zclass.GetTypeInfo().GetCustomAttributes<InjectableAttribute>())
                 {
@@ -58,32 +57,10 @@ namespace Microsoft.Extensions.DependencyInjection
             }
             return services;
         }
-
-        private static IEnumerable<Type> GetListOfTypes(string[] assemblies)
-        {
-
-            Type[] types;
-
-            if (!(assemblies is null) && assemblies.Any())
-            {
-                types = AppDomain.CurrentDomain
-                    .GetAssemblies()
-                    .Where(assembly => assemblies.Contains(assembly.GetName().Name))
-                    .SelectMany(assembly => assembly.GetTypes()).ToArray();
-            }
-            else
-            {
-                types = Assembly.GetEntryAssembly().GetTypes();
-            }
-            return from zclass in types
-                   where zclass.GetTypeInfo().IsClass
-                   select zclass;
-        }
-
         private static void AddInjection(IServiceCollection services,
-            DependencyInjectionTypes type,
-            Type zinterface,
-            Type zclass)
+          DependencyInjectionTypes type,
+          Type zinterface,
+          Type zclass)
         {
 
             if (type == DependencyInjectionTypes.Singlenton)

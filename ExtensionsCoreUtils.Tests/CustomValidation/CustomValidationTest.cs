@@ -1,4 +1,5 @@
 ﻿using ExtensionsCoreUtils.Tests.CustomValidation.Classes;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,6 +10,15 @@ namespace ExtensionsCoreUtils.Tests.CustomValidation
 {
     public class CustomValidationTest
     {
+
+
+        [Fact]
+        public void Test_Custom_Validation_Start()
+        {
+            IServiceCollection service = new ServiceCollection().ScanValidations("ExtensionsCoreUtils.Tests");
+            Assert.Equal(2, service.ValidationList().Count);
+        }
+
 
         [Fact]
         public void Test_Validation_Entity()

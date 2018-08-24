@@ -8,6 +8,9 @@ namespace ExtensionsCoreUtils.Attributes
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public sealed class DomainValidationNameAttribute : Attribute
     {
+
+        public DomainValidationNameAttribute() { }
+
         public DomainValidationNameAttribute(string name)
         {
             Name = name;
