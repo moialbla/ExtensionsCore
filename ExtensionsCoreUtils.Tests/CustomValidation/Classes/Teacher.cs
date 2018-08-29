@@ -9,10 +9,10 @@ namespace ExtensionsCoreUtils.Tests.CustomValidation.Classes
     [DomainValidationName()]
     public class TeacherDto
     {
-        public int StudentID { get; set; }
+        public int TeacherID { get; set; }
 
         [Required]
-        public string StudentName { get; set; }
+        public string TeacherName { get; set; }
 
         [Required(ErrorMessage = "hola")]
         [Attributes.CustomValidation(ErrorMessage = "ERROR_RESOURCES_TEST", FunctionValidation = "function(value){ return true;}", FunctionName = "foo")]

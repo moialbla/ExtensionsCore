@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -21,7 +22,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             GenerateValidations(CoreUtils
                 .GetListOfTypes(assemblies, 
-                                (t)=> !(t.GetCustomAttribute(typeof(DomainValidationNameAttribute)) is null) ));
+                                (type)=> !(type.GetCustomAttribute(typeof(DomainValidationNameAttribute)) is null) ));
             return services;
 
         }
@@ -35,16 +36,16 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             foreach (Type zclass in types)
             {
-
-
-
-                string json = JsonConvert.SerializeObject(zclass, Formatting.Indented, new KeysJsonConverter(zclass));
+                string json = JsonConvert
+                    .SerializeObject(zclass, Formatting.Indented, new KeysJsonConverter());
+                System.Diagnostics.Debug.WriteLine($"JSON:{json}");
 
                 foreach (var propertyInfo in zclass
-                                .GetProperties(
-                                        BindingFlags.Public
-                                        | BindingFlags.Instance))
+                                                    .GetProperties( BindingFlags.Public | BindingFlags.Instance)
+                                                    .ToList()
+                                                    .FindAll((p)=> !(typeof(ValidationAttribute) is null)))
                 {
+                    System.Diagnostics.Debug.WriteLine($"{propertyInfo.Name}");
                     // do stuff here
                 }
 
@@ -54,10 +55,11 @@ namespace Microsoft.Extensions.DependencyInjection
             }
         }
 
-
         private static string GetName(Type type) {
             return ((DomainValidationNameAttribute)type.GetCustomAttribute(typeof(DomainValidationNameAttribute))).Name ?? type.Name;
         }
+
+
 
         /**
          {
