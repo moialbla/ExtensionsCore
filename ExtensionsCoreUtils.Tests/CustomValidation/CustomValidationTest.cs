@@ -16,7 +16,7 @@ namespace ExtensionsCoreUtils.Tests.CustomValidation
         public void Test_Custom_Validation_Start()
         {
             IServiceCollection service = new ServiceCollection().ScanValidations("ExtensionsCoreUtils.Tests");
-            Assert.Equal(2, service.ValidationList().Count);
+            Assert.Equal(3, service.ValidationList().Count);
         }
 
 

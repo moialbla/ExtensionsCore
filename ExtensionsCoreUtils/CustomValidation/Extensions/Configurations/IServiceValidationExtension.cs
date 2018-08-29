@@ -16,7 +16,7 @@ namespace Microsoft.Extensions.DependencyInjection
     public static class IServiceValidationExtension
     {
 
-        static readonly Dictionary<string, string> objectList = new Dictionary<string, string>();
+        static readonly Dictionary<string, string>   = new Dictionary<string, string>();
 
         public static IServiceCollection ScanValidations(this IServiceCollection services, params string[] assemblies)
         {
@@ -36,20 +36,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             foreach (Type zclass in types)
             {
-                string json = JsonConvert
-                    .SerializeObject(zclass, Formatting.Indented, new KeysJsonConverter());
-                System.Diagnostics.Debug.WriteLine($"JSON:{json}");
-
-                foreach (var propertyInfo in zclass
-                                                    .GetProperties( BindingFlags.Public | BindingFlags.Instance)
-                                                    .ToList()
-                                                    .FindAll((p)=> !(typeof(ValidationAttribute) is null)))
-                {
-                    System.Diagnostics.Debug.WriteLine($"{propertyInfo.Name}");
-                    // do stuff here
-                }
-
-
+                string json = JsonConvert.SerializeObject(zclass, Formatting.Indented, new KeysJsonConverter());
                 objectList.Add(GetName(zclass), json);
                 System.Diagnostics.Debug.WriteLine($"{GetName(zclass)}, {json}");
             }
@@ -58,72 +45,5 @@ namespace Microsoft.Extensions.DependencyInjection
         private static string GetName(Type type) {
             return ((DomainValidationNameAttribute)type.GetCustomAttribute(typeof(DomainValidationNameAttribute))).Name ?? type.Name;
         }
-
-
-
-        /**
-         {
-  "property": {
-    "validations": [
-      {
-        "required": {
-          "arguments": [
-            1,
-            2,
-            3
-          ],
-          "message": "test"
-        }
-      },
-      {
-        "customFunction": {
-          "fn": "()=>{}",
-          "message": "testCustom"
-        }
-      },
-      {
-        "length": {
-          "arguments": [
-            1,
-            3
-          ],
-          "message": "test"
-        }
-      }
-    ]
-  },
-  "property1": {
-    "validations": [
-      {
-        "required": {
-          "arguments": [
-            1,
-            2,
-            3
-          ],
-          "message": "test"
-        }
-      },
-      {
-        "customFunction": {
-          "fn": "()=>{}",
-          "message": "testCustom"
-        }
-      },
-      {
-        "length": {
-          "arguments": [
-            1,
-            3
-          ],
-          "message": "test"
-        }
-      }
-    ]
-  }
-}
-         */
-
-
     }
 }

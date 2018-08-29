@@ -12,8 +12,11 @@ namespace ExtensionsCoreUtils.Tests.CustomValidation.Classes
     {
         public int StudentID { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "The name is mandatory")]
         public string StudentName { get; set; }
+
+        [Range(0, int.MaxValue, ErrorMessage = "The age can´t no be a negative value")]
+        public int Edad { get; set; }
 
         [Required(ErrorMessage ="hola")]
         [Attributes.CustomValidation(ErrorMessage ="ERROR_RESOURCES_TEST", FunctionValidation = "function(value){ return true;}", FunctionName ="foo")]
