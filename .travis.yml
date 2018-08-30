@@ -6,6 +6,5 @@ branches:
   only:  
     - master
 script:  
-  - dotnet restore 
   - dotnet build ./ExtensionsCoreUtils/
   - dotnet test ./ExtensionsCoreUtils.Tests/
