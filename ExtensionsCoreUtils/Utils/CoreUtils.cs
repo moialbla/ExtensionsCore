@@ -39,10 +39,20 @@ namespace ExtensionsCoreUtils.Utils
             {
                 return  types = Assembly.GetEntryAssembly().GetTypes();
             }
-            //return from zclass in types
-            //       where zclass.GetTypeInfo().IsClass
-            //       && zclass.GetCustomAttribute(typeof())
-            //       select zclass;
+        }
+        /// <summary>
+        /// String extension, convert the first letter into lower case.
+        /// </summary>
+        /// <param name="str">The string.</param>
+        /// <returns>The string with the first letter in lower case.</returns>
+        public static string FirstCharacterToLower(this string str)
+        {
+            if (String.IsNullOrEmpty(str) || Char.IsLower(str, 0))
+            {
+                return str;
+            }
+
+            return Char.ToLowerInvariant(str[0]) + str.Substring(1);
         }
     }
 }

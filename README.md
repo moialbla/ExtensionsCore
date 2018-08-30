@@ -22,12 +22,14 @@ Install-Package ExtensionsCoreUtils -Version 1.0.0
 ## Contents
 
 1. [Dependency injection](https://github.com/moialbla/ExtensionsCore/blob/master/ExtensionsCoreUtils/README.md)
+1. [Model Reflection](https://github.com/moialbla/ExtensionsCore/blob/master/ExtensionsCoreUtils/README.md)
 
 ## Currently implemented
 - [x] Dependency injection (phase 1).
+- [x] Dependency injection (phase 2).
+- [x] Model Reflection (phase 1).
 
 ## Not implemented (but planned)
-- [ ] Dependency injection (phase 2) -> Own IOC.
 - [ ] Auto Logger  
 - [ ] Auto i18n
 - [ ] Generic CRUD

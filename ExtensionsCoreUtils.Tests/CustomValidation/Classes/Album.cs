@@ -25,6 +25,8 @@ namespace ExtensionsCoreUtils.Tests.CustomValidation.Classes
         [DisplayName("Album Art URL")]
         [StringLength(1024)]
         public string AlbumArtUrl { get; set; }
+        [Attributes.CustomValidation(ErrorMessage = "ERROR_RESOURCES_TEST", FunctionValidation = "function(value){ return true;}", FunctionName = "foo")]
+        [Attributes.CustomValidation(ErrorMessage = "bar_message", FunctionValidation = " function (value) { return value != null; }")]
         public virtual StudentDto student { get; set; }
     }
 }

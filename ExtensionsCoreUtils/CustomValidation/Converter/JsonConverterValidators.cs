@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using System.Text;
 using System.Linq;
+using ExtensionsCoreUtils.Utils;
 
 namespace ExtensionsCoreUtils.CustomValidation.Extensions
 {
@@ -23,7 +24,7 @@ namespace ExtensionsCoreUtils.CustomValidation.Extensions
         internal dynamic GetAttribute(object obj, PropertyInfo propertyInfo)
         {
             Type type = obj.GetType();
-            String name = type.Name.Replace("Attribute", "").ToLowerInvariant();
+            String name = type.Name.FirstCharacterToLower().Replace("Attribute", "").ToLowerInvariant();
 
             if (type.Equals(typeof(Attributes.CustomValidationAttribute)))
             {
@@ -53,16 +54,17 @@ namespace ExtensionsCoreUtils.CustomValidation.Extensions
             JObject customAttributes = new JObject();   
 
             foreach (PropertyInfo prop in propertyInfo
-                                        .GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                                        .GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.GetProperty)
                                         .Where(p => !p.PropertyType.IsClass))
             {
                 var propertyName = prop.Name;
                 var propertyValue = propertyInfo.GetProperty(propertyName).GetValue(obj, null);
                 if (propertyValue != null)
                 {
-                    customAttributes.Add(new JProperty(propertyName, propertyValue));
+                    customAttributes.Add(new JProperty(propertyName.FirstCharacterToLower(), propertyValue));
                 }
             }
+
             return customAttributes;
         }
 

@@ -73,6 +73,7 @@ namespace MyApp
         public void method()
         {
             ......
+            //Search by name.
             ITest2 itest = MyServiceProvider.GetService(typeof(ITest2), "Test");
             ......
         }

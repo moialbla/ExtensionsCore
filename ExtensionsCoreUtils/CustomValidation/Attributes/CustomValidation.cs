@@ -45,13 +45,12 @@ namespace ExtensionsCoreUtils.Attributes
 
                 using (JsContext context = js.CreateContext())
                 {
+                String execute = String.Format("var fn = {{ exec: {0} }}", FunctionValidation);
                     // Create a global variable on the JS side.
-                    context.Execute(@"var fn = { exec: function (value) { return value != null; } }");
+                    context.Execute(execute);
                     // Get it and use "dynamic" to tell the compiler to use runtime binding.
                     dynamic x = context.GetVariable("fn");
-                    // Call the method and print the result. This will print:
-                    // "What is the answer to ...? 42"
-                    Console.WriteLine(x.exec(value));
+                    // Call the method and print the result.
                     valid = (bool)x.exec(value);
                 }
 

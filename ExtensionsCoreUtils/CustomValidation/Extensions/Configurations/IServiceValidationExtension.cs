@@ -16,7 +16,7 @@ namespace Microsoft.Extensions.DependencyInjection
     public static class IServiceValidationExtension
     {
 
-        static readonly Dictionary<string, string>   = new Dictionary<string, string>();
+        static readonly Dictionary<string, string> objectList = new Dictionary<string, string>();
 
         public static IServiceCollection ScanValidations(this IServiceCollection services, params string[] assemblies)
         {

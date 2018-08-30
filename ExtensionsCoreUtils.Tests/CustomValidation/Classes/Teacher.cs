@@ -14,9 +14,9 @@ namespace ExtensionsCoreUtils.Tests.CustomValidation.Classes
         [Required]
         public string TeacherName { get; set; }
 
-        [Required(ErrorMessage = "hola")]
+        [Required(ErrorMessage = "Hi")]
         [Attributes.CustomValidation(ErrorMessage = "ERROR_RESOURCES_TEST", FunctionValidation = "function(value){ return true;}", FunctionName = "foo")]
-        [Attributes.CustomValidation(ErrorMessage = "bar_message", FunctionValidation = "function(value){ return value === '';}")]
+        [Attributes.CustomValidation(ErrorMessage = "bar_message", FunctionValidation = " function (value) { return value != null; }")]
         public DateTime DateOfBirth { get; set; }
     }
 }
