@@ -5,10 +5,14 @@
     <Platforms>AnyCPU;x64;x86</Platforms>
 	<DebugType>Full</DebugType>
 	<Product>ExtensionsCoreUtils</Product>
-	<Description>Net core extension</Description>
+	<Description>Net core extensions:
+Even being Net core is a great framework, it´s very complicate and tedious make configurations as others frameworks as Spring Java. Therefore, with reference to knowledge of other technologies, i decide to build a simple and util core for developer
+</Description>
 	<PackageId>ExtensionsCoreUtils</PackageId>
 	<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
-	<PackageReleaseNotes>Net core extension</PackageReleaseNotes>
+	<PackageReleaseNotes>Features:
+- Dependency injection: annotations and scan.
+- Validations: annotations and scan.</PackageReleaseNotes>
 	<Version>1.0.0</Version>
 	<PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
 	<Company>ExtensionsCoreUtils</Company>

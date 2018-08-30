@@ -20,20 +20,20 @@ namespace ExtensionsCoreUtils.Tests.CustomValidation
         }
 
 
-        [Fact]
-        public void Test_Validation_Entity()
-        {
-            /// 1.- Create a student 
-            StudentDto dto = new StudentDto() { StudentID = 1, DateOfBirth = new DateTime(), StudentName = "test" };
-            /// 2.- Create a context of validation  
-            ValidationContext valContext = new ValidationContext(dto, null, null);
-            /// 3.- Create a container of results  
-            var validationsResults = new List<ValidationResult>();
-            /// 4.- Validate customer  
-            bool correct = Validator.TryValidateObject(dto, valContext, validationsResults, true);
+        //[Fact]
+        //public void Test_Validation_Entity()
+        //{
+        //    /// 1.- Create a student 
+        //    StudentDto dto = new StudentDto() { StudentID = 1, DateOfBirth = new DateTime(), StudentName = "test" };
+        //    /// 2.- Create a context of validation  
+        //    ValidationContext valContext = new ValidationContext(dto, null, null);
+        //    /// 3.- Create a container of results  
+        //    var validationsResults = new List<ValidationResult>();
+        //    /// 4.- Validate customer  
+        //    bool correct = Validator.TryValidateObject(dto, valContext, validationsResults, true);
 
-            Equals(validationsResults.Count == 0);
+        //    Equals(validationsResults.Count == 0);
  
-        }
+        //}
     }
 }

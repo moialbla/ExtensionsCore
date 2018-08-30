@@ -22,7 +22,7 @@ Install-Package ExtensionsCoreUtils -Version 1.0.0
 ## Contents
 
 1. [Dependency injection](https://github.com/moialbla/ExtensionsCore/blob/master/ExtensionsCoreUtils/Injectable/README.md)
-2. [Model Reflection](https://github.com/moialbla/ExtensionsCore/blob/master/ExtensionsCoreUtils/CustomValidation/	README.md)
+2. [Model Reflection](https://github.com/moialbla/ExtensionsCore/blob/master/ExtensionsCoreUtils/CustomValidation/README.md)
 
 ## Currently implemented
 - [x] Dependency injection (phase 1).
